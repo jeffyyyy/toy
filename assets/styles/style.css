@@ -9,3 +9,7 @@ table.toytable tr:nth-child(odd) td:nth-child(even) {
 table.toytable tr:nth-child(even) td:nth-child(odd) {
   background: #000;
 }
+
+.toymodel {
+  color: #0ab8b8;
+}

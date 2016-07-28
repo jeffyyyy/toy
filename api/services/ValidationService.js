@@ -12,25 +12,34 @@ var ValidationService = {
   validateInput: function(inputData, onResult, onError) {
     var directions = ['N', "E", "S", "W"];
     var error;
-    console.log(inputData);
-    if (!inputData.currentPosition) {
+  
+    if (!inputData.commandInput) {
+      error = {error: "No command input"};
+    } if (!inputData.currentPosition) {
       error = {error: "No current position"};
-    } else if (!inputData.commandInput) {
-      error = {error: "No valid command input"};
-    } else if (inputData.commandInput.type == "place" && (inputData.currentPosition.x == undefined
-      || inputData.currentPosition.y == undefined
-      || !ValidationService.checkInteger(inputData.currentPosition.x) 
-      || !ValidationService.checkInteger(inputData.currentPosition.y))) {
-      error = {error: "Current position x or y undefined"};
-    } else if (inputData.commandInput.type == "place" && (inputData.commandInput.x == undefined 
-      || inputData.commandInput.y == undefined 
-      || !ValidationService.checkInteger(inputData.commandInput.x) 
-      || !ValidationService.checkInteger(inputData.commandInput.y))) {
-      error = {error: "Command input x or y undefined"};
+    } else if (!ValidationService.checkInteger(inputData.currentPosition.x)
+                || !ValidationService.checkInteger(inputData.currentPosition.y)
+                || !_.contains(directions, inputData.currentPosition.f)) {
+      error = {error: "No current position, please use PLACE command first"};
     } else if (!inputData.commandInput.type) {
       error = {error: "Command input type undefined"};
-    } else if (inputData.commandInput.type == "place" && (!inputData.commandInput.f || !_.contains(directions, inputData.commandInput.f))) {
-      error = {error: "Command input facing direction undefined or incorrect"};
+    } else {
+      switch(inputData.commandInput.type) {
+        case "place":
+          if (!ValidationService.checkInteger(inputData.commandInput.x) 
+              || !ValidationService.checkInteger(inputData.commandInput.y)
+              || !_.contains(directions, inputData.commandInput.f)) {
+            error = {error: "Command input x or y or direction undefined"};
+          }
+          break;
+        case "move":
+        case "left":
+        case "right":
+          console.log("here is move left or right");
+          break;
+        default:
+          break;
+      }
     }
 
     if (error) {

@@ -7,7 +7,7 @@
 
 module.exports = {
 	getInitialState: function(req, res) {
-    return res.send({x: 1, y: 1, f: 'N'});
+    return res.send({x: null, y: null, f: ''});
   },
 
   handleNextMove: function(req, res) {

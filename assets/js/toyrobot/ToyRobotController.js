@@ -1,7 +1,12 @@
 ToyRobot.controller('ToyRobotController', ['$scope', 'ToyRobotService',
 function ($scope, ToyRobotService) {
   $scope.toyRobotModel = {
-    currentState: {}
+    currentPosition: {
+      x: 1,
+      y:2
+    },
+    row: 5,
+    column : 5
   }
   $scope.init = function() {
     ToyRobotService.getInitialState().then(function(response) {
@@ -24,7 +29,7 @@ function ($scope, ToyRobotService) {
       //   f: 'N'
       // }
       commandInput: {
-        type: 'move',
+        type: 'move'
       }
     }
     ToyRobotService.nextMove(data).then(function(response) {

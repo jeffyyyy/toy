@@ -3,44 +3,44 @@
     <div class="page-header text-center">
       <h1>Toy Robot Simulator</h1>
     </div>
-    <div class="col-sm-6 col-sm-offset-3">
+    <div class="col-sm-6 col-sm-offset-2">
       <table class="toytable">
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+        <tr ng-repeat="col in [] | rangeColumn: toyRobotModel.column">
+            <td ng-repeat="row in [] | rangeRow: toyRobotModel.row" class="text-center">
+                <i ng-if="toyRobotModel.currentPosition.x == row && toyRobotModel.currentPosition.y == col" class="fa fa-arrow-up fa-2x toymodel"></i>
+            </td>
         </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-    </table>
+        </table>
     </div>
+    <div class="col-sm-4">
+
+        <div class="row">
+            <button class="btn btn-default">Place</button>
+            <input type="number" name="x" />
+            <input type="number" name="y" />
+            <select>
+                <option value="">Choose a direction</option>
+                <option value="N">North</option>
+                <option value="E">East</option>
+                <option value="S">South</option>
+                <option value="W">West</option>
+            </select>
+        </div>
+        <div class="row">
+            <button class="btn btn-default">Move</button>
+        </div>
+        <div class="row">
+            <button class="btn btn-default">Left</button>
+        </div>
+        <div class="row">
+            <button class="btn btn-default">Right</button>
+        </div>
+        <div class="row">
+            <button class="btn btn-default">Report</button>
+        </div>
+    </div>
+  </div>
+  <div class="col-sm-12">
+
   </div>
 </div>
