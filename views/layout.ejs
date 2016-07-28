@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="ToyRobot">
   <head>
     <title><%=typeof title == 'undefined' ? 'New Sails App' : title%></title>
 
@@ -30,6 +30,9 @@
 
     <!--STYLES-->
     <link rel="stylesheet" href="/styles/importer.css">
+    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="/js/dependencies/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/js/dependencies/bootstrap/dist/css/bootstrap-theme.min.css">
     <!--STYLES END-->
   </head>
 
@@ -89,6 +92,11 @@
 
     <!--SCRIPTS-->
     <script src="/js/dependencies/sails.io.js"></script>
+    <script src="/js/dependencies/angular/angular.min.js"></script>
+    <script src="/js/dependencies/angular-route/angular-route.min.js"></script>
+    <script src="/js/toyrobot/ToyRobotApp.js"></script>
+    <script src="/js/toyrobot/ToyRobotController.js"></script>
+    <script src="/js/toyrobot/ToyRobotService.js"></script>
     <!--SCRIPTS END-->
   </body>
 </html>

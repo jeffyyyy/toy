@@ -1,0 +1,11 @@
+table.toytable tr td {
+  width: 100px;
+  height: 100px;
+  border: solid #000 1px;
+}
+table.toytable tr:nth-child(odd) td:nth-child(even) {
+  background: #000;
+}
+table.toytable tr:nth-child(even) td:nth-child(odd) {
+  background: #000;
+}

@@ -1,0 +1,24 @@
+{
+  "name": "toyrobot",
+  "description": "a Sails application",
+  "main": "app.js",
+  "authors": [
+    "Jeff Yu"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/jeffyyyy/toy",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "assets/js/dependencies",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.5.8",
+    "angular-route": "~1.5.8",
+    "bootstrap": "~3.3.7"
+  }
+}

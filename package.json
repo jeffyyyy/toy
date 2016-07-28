@@ -1,8 +1,8 @@
 {
-  "name": "toyrobot",
+  "name": "Toy Robot",
   "private": true,
-  "version": "0.0.0",
-  "description": "a Sails application",
+  "version": "0.1.0",
+  "description": "a toy robot simulator",
   "keywords": [],
   "dependencies": {
     "ejs": "2.3.4",
@@ -30,8 +30,8 @@
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/anonymous node/sails user/toyrobot.git"
+    "url": "git://github.com/jeffyyyy/toy.git"
   },
-  "author": "anonymous node/sails user",
-  "license": ""
+  "author": "Jeff Yu",
+  "license": "MIT"
 }
