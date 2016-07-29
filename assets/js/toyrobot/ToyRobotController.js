@@ -63,11 +63,11 @@ function ($scope, ToyRobotService) {
         $scope.toyRobotModel.output = $scope.reportOutput($scope.toyRobotModel.currentPosition);
         $scope.toyRobotModel.error = '';
         if (response.f) $scope.changeDirection(response.f);
-        if (type == 'place') {
-          $scope.toyRobotModel.input += "PLACE " + commandInput.x + "," + commandInput.y + "," + commandInput.f+"\n";
-        } else {
-          $scope.toyRobotModel.input += type.toUpperCase()+"\n";
-        }
+      }
+      if (type == 'place') {
+        $scope.toyRobotModel.input += "PLACE " + commandInput.x + "," + commandInput.y + "," + commandInput.f + (response.error ? " - ERROR \n" : "\n");
+      } else {
+        $scope.toyRobotModel.input += type.toUpperCase() + (response.error ? " - ERROR \n" : "\n");
       }
     });
   }
