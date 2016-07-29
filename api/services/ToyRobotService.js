@@ -11,7 +11,7 @@ var ToyRobotService = {
     if (response) {
       return onResult(response);  
     } else {
-      return onError({error: "out of boundary"});
+      return onError({error: "Out of boundary"});
     }
   },
 

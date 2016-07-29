@@ -1,47 +1,79 @@
 ToyRobot.controller('ToyRobotController', ['$scope', 'ToyRobotService',
 function ($scope, ToyRobotService) {
   $scope.toyRobotModel = {
-    currentPosition: {
-      x: 1,
-      y:2
-    },
+    currentPosition: {},
     row: 5,
-    column : 5
-  }
-  $scope.init = function() {
-    ToyRobotService.getInitialState().then(function(response) {
-      $scope.toyRobotModel.currentState = response;
-      console.log($scope.toyRobotModel.initialState);
-    });
+    column : 5,
+    nextMove: {
+      type: '',
+      f: '',
+      x: '',
+      y: ''
+    },
+    robotClass: '',
+    input: '',
+    output: '',
+    error: ''
   }
 
-  $scope.nextMove = function() {
-    var data = {
-      currentPosition: {
-        x: 0,
-        y: 0,
-        f: 'E'
-      },
-      // commandInput: {
-      //   type: 'place',
-      //   x: 4,
-      //   y: 1,
-      //   f: 'N'
-      // }
-      commandInput: {
-        type: 'move'
-      }
+  $scope.changeDirection = function(facing) {
+    switch(facing) {
+      case 'N':
+        $scope.toyRobotModel.robotClass = "fa-arrow-up";
+        break;
+      case 'E':
+        $scope.toyRobotModel.robotClass = "fa-arrow-right";
+        break;
+      case 'S':
+        $scope.toyRobotModel.robotClass = "fa-arrow-down";
+        break;
+      case 'W':
+        $scope.toyRobotModel.robotClass = "fa-arrow-left";
+        break;
+      default:
+        break;
     }
+  }
+
+  $scope.nextMove = function(type) {
+    var commandInput = {
+      x: $scope.toyRobotModel.nextMove.x,
+      y: $scope.toyRobotModel.nextMove.y,
+      f: $scope.toyRobotModel.nextMove.f,
+      type: type
+    };
+
+    var data;
+    if (type == 'place') {
+      data = {
+        commandInput: commandInput
+      };
+    } else {
+      data = {
+        currentPosition: $scope.toyRobotModel.currentPosition,
+        commandInput: commandInput
+      };
+    }
+
     ToyRobotService.nextMove(data).then(function(response) {
-      console.log(response);
       if (response.error) {
-        alert(response.error);
+        $scope.toyRobotModel.error = "Oh snap! " + response.error;
       } else {
-        $scope.toyRobotModel.currentState = response;
+        $scope.toyRobotModel.currentPosition = response;
+        $scope.toyRobotModel.output = $scope.reportOutput($scope.toyRobotModel.currentPosition);
+        $scope.toyRobotModel.error = '';
+        if (response.f) $scope.changeDirection(response.f);
+        if (type == 'place') {
+          $scope.toyRobotModel.input += "PLACE " + commandInput.x + "," + commandInput.y + "," + commandInput.f+"\n";
+        } else {
+          $scope.toyRobotModel.input += type.toUpperCase()+"\n";
+        }
       }
     });
   }
 
-  $scope.init();
-  $scope.nextMove();
+  $scope.reportOutput = function(currentPosition) {
+    return "Output: " + currentPosition.x + "," + currentPosition.y + "," + currentPosition.f;
+  }
+
 }]);

@@ -1,46 +1,68 @@
-<div ng-controller="ToyRobotController as toy" class="container">
+<div ng-controller="ToyRobotController as toy" class="container ng-cloak">
   <div class="row">
     <div class="page-header text-center">
-      <h1>Toy Robot Simulator</h1>
+      <h1>Jeff's Toy Robot Simulator</h1>
+    </div>
+    <div class="col-sm-10 col-sm-offset-2 warningPanel">
+      <div class="alert alert-danger ng-cloak" ng-if="toyRobotModel.error">{{toyRobotModel.error}}</div>
     </div>
     <div class="col-sm-6 col-sm-offset-2">
       <table class="toytable">
         <tr ng-repeat="col in [] | rangeColumn: toyRobotModel.column">
             <td ng-repeat="row in [] | rangeRow: toyRobotModel.row" class="text-center">
-                <i ng-if="toyRobotModel.currentPosition.x == row && toyRobotModel.currentPosition.y == col" class="fa fa-arrow-up fa-2x toymodel"></i>
+                <i ng-if="toyRobotModel.currentPosition.x == row && toyRobotModel.currentPosition.y == col" class="fa fa-2x toymodel" ng-class="toyRobotModel.robotClass"></i>
             </td>
         </tr>
         </table>
     </div>
     <div class="col-sm-4">
+        <div class="row">
+            <div class="col-sm-12">
+              <button class="btn btn-primary" ng-click="nextMove('place')">Place</button>
+            </div>
+            <div class="col-sm-6">
+              <input type="number" name="x" placeholder="x position, eg 2" ng-model="toyRobotModel.nextMove.x" class="form-control"/>
+            </div>
+            <div class="col-sm-6">
+              <input type="number" name="y" placeholder="y position, eg 1" ng-model="toyRobotModel.nextMove.y" class="form-control"/>
+            </div>
+            <br>
+            <div class="col-sm-12">
+              <select class="form-control" ng-model="toyRobotModel.nextMove.f">
+                  <option value="">Choose a direction</option>
+                  <option value="N">North</option>
+                  <option value="E">East</option>
+                  <option value="S">South</option>
+                  <option value="W">West</option>
+              </select>
+              <hr/>
+            </div>
 
-        <div class="row">
-            <button class="btn btn-default">Place</button>
-            <input type="number" name="x" />
-            <input type="number" name="y" />
-            <select>
-                <option value="">Choose a direction</option>
-                <option value="N">North</option>
-                <option value="E">East</option>
-                <option value="S">South</option>
-                <option value="W">West</option>
-            </select>
         </div>
         <div class="row">
-            <button class="btn btn-default">Move</button>
-        </div>
-        <div class="row">
-            <button class="btn btn-default">Left</button>
-        </div>
-        <div class="row">
-            <button class="btn btn-default">Right</button>
-        </div>
-        <div class="row">
-            <button class="btn btn-default">Report</button>
+          <div class="col-sm-12">
+            <div class="btn-group">
+              <button class="btn btn-success" ng-click="nextMove('move')">Move</button>
+              <button class="btn btn-info" ng-click="nextMove('left')">Left</button>
+              <button class="btn btn-info" ng-click="nextMove('right')">Right</button>
+            </div>
+          </div>
         </div>
     </div>
   </div>
-  <div class="col-sm-12">
+  <div class="row">
+    <hr>
+    <div class="col-sm-4 col-sm-offset-2 well">
+      <h4 class="text-info">Input</h4>
+      <textarea ng-model="toyRobotModel.input" class="form-control inputTextarea">
 
+      </textarea>
+    </div>
+    <div class="col-sm-4 col-sm-offset-1 well">
+      <h4 class="text-info">Output</h4>
+      <textarea ng-model="toyRobotModel.output" class="form-control outputTextarea">
+
+      </textarea>
+    </div>
   </div>
 </div>

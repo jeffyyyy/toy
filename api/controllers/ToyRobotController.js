@@ -6,9 +6,6 @@
  */
 
 module.exports = {
-	getInitialState: function(req, res) {
-    return res.send({x: null, y: null, f: ''});
-  },
 
   handleNextMove: function(req, res) {
     var currentPosition = req.param('currentPosition');
@@ -28,11 +25,9 @@ module.exports = {
       };
 
       ToyRobotService.handleNextMove(inputData, function(result) {
-        console.log("111", result);
         return res.send(result);
       }, function(error) {
-        console.log("222", error);
-        return res.send(error);  
+        return res.send(error);
       });
     }, function(error) {
       return res.send(error);

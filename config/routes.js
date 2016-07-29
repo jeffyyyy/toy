@@ -37,7 +37,6 @@ module.exports.routes = {
   // }
   //'get /': {view: 'index'},
   'get /': {view:'toyrobot/index'},
-  'get /api/getInitialState': 'ToyRobotController.getInitialState',
   'post /api/handleNextMove': 'ToyRobotController.handleNextMove'
   /***************************************************************************
   *                                                                          *

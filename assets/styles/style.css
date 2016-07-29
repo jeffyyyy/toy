@@ -11,5 +11,14 @@ table.toytable tr:nth-child(even) td:nth-child(odd) {
 }
 
 .toymodel {
-  color: #0ab8b8;
+  color: #0bdada;
+}
+.inputTextarea, .outputTextarea {
+  min-height: 200px;
+}
+.warningPanel{
+  height:70px;
+}
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
 }

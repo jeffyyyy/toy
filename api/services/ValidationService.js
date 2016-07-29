@@ -10,35 +10,43 @@ var ValidationService = {
 
   // Validate Robot simulator input to make sure they pass in required
   validateInput: function(inputData, onResult, onError) {
-    var directions = ['N', "E", "S", "W"];
     var error;
-  
-    if (!inputData.commandInput) {
-      error = {error: "No command input"};
-    } if (!inputData.currentPosition) {
-      error = {error: "No current position"};
-    } else if (!ValidationService.checkInteger(inputData.currentPosition.x)
-                || !ValidationService.checkInteger(inputData.currentPosition.y)
-                || !_.contains(directions, inputData.currentPosition.f)) {
-      error = {error: "No current position, please use PLACE command first"};
-    } else if (!inputData.commandInput.type) {
-      error = {error: "Command input type undefined"};
-    } else {
-      switch(inputData.commandInput.type) {
-        case "place":
-          if (!ValidationService.checkInteger(inputData.commandInput.x) 
-              || !ValidationService.checkInteger(inputData.commandInput.y)
-              || !_.contains(directions, inputData.commandInput.f)) {
-            error = {error: "Command input x or y or direction undefined"};
+    var currentPosition = inputData.currentPosition;
+    var commandInput = inputData.commandInput;
+
+    if (currentPosition) {
+      if (commandInput) {
+        if (commandInput.type) {
+          switch(commandInput.type) {
+              case "place":
+                if (ValidationService.checkInvalidPosition(commandInput)) {
+                  error = {error: "Command input not valid, either x or y or direction undefined"};
+                }
+                break;
+              case "move":
+              case "left":
+              case "right":
+                if (ValidationService.checkInvalidPosition(currentPosition)) {
+                  error = {error: "Current position not valid, please start with valid PLACE command"};
+                }
+                break;
+              default:
+                error = {error: "Command type not valid"};
+                break;
           }
-          break;
-        case "move":
-        case "left":
-        case "right":
-          console.log("here is move left or right");
-          break;
-        default:
-          break;
+        } else {
+          error = {error: "No command type"};
+        }
+      } else {
+        error = {error: "No command input"};
+      }
+    } else {
+      if (commandInput && commandInput.type == 'place') {
+        if (ValidationService.checkInvalidPosition(commandInput)) {
+          error = {error: "Command input not valid, either x or y or direction or type undefined"};
+        }
+      } else {
+        error = {error: "No current position, please use valid PLACE command first"};
       }
     }
 
@@ -47,6 +55,13 @@ var ValidationService = {
     } else {
       return onResult();
     }
+  },
+
+  checkInvalidPosition: function(input) {
+    var directions = ['N', "E", "S", "W"];
+    return (!ValidationService.checkInteger(input.x)
+            || !ValidationService.checkInteger(input.y)
+            || !_.contains(directions, input.f));
   },
 
   checkInteger: function(input) {
