@@ -8,7 +8,7 @@
 5. Unit tests can be run with command "mocha". Please be aware that unit tests will need to start the web server at same port, so you would need to shutdown the app first.
 
 ## Important files
-* Inside folder "api", which contains all the server side node.js code
+* Inside folder "api/controllers" and "api/services", which contains all the server side node.js code
 * Inside folder "assets/js/toyrobot", which contains all the frontend angular.js code
 * Inside folder "assets/styles", which contains all the css files
 * Inside folder "views/toyrobot", which contains the view files
