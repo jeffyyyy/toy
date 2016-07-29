@@ -14,5 +14,6 @@
 * Inside folder "views/toyrobot", which contains the view files
 * Inside folder "test", which contains all unit tests files
 
+## Screenshots
 ![alt text](https://github.com/jeffyyyy/toy/raw/develop/assets/images/toyrobot_screenshot.png "Toy Robot Control Panel")
 ![alt text](https://github.com/jeffyyyy/toy/raw/develop/assets/images/unittest_screenshot.png "Toy Robot Unit Tests")
