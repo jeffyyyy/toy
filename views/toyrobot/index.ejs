@@ -17,8 +17,22 @@
     </div>
     <div class="col-sm-4">
         <div class="row">
+          <div class="col-sm-12">
+            <button class="btn pull-left" ng-class="toyRobotModel.stepModeClass" ng-click="setMode('step')">Step-By-Step Mode</button>
+            <button class="btn pull-right" ng-class="toyRobotModel.patchModeClass" ng-click="setMode('patch')">Patch Commands Mode</button>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 ">
+            <div class="well"><strong>Notes*:</strong><p>{{toyRobotModel.modeDescription}}</p></div>
+            <hr>
+          </div>
+        </div>
+        <div class="row">
             <div class="col-sm-12">
-              <button class="btn btn-primary" ng-click="nextMove('place')">Place</button>
+              <button class="btn btn-info" ng-click="nextMove('place')">Place</button><br><br>
             </div>
             <div class="col-sm-6">
               <input type="number" name="x" placeholder="x position, eg 2" ng-model="toyRobotModel.nextMove.x" class="form-control"/>
@@ -26,8 +40,8 @@
             <div class="col-sm-6">
               <input type="number" name="y" placeholder="y position, eg 1" ng-model="toyRobotModel.nextMove.y" class="form-control"/>
             </div>
-            <br>
             <div class="col-sm-12">
+              <br>
               <select class="form-control" ng-model="toyRobotModel.nextMove.f">
                   <option value="">Choose a direction</option>
                   <option value="N">North</option>
@@ -42,25 +56,30 @@
         <div class="row">
           <div class="col-sm-12">
             <div class="btn-group">
-              <button class="btn btn-success" ng-click="nextMove('move')">Move</button>
+              <button class="btn btn-info" ng-click="nextMove('move')">Move</button>
               <button class="btn btn-info" ng-click="nextMove('left')">Left</button>
               <button class="btn btn-info" ng-click="nextMove('right')">Right</button>
             </div>
+            <hr>
+          </div>
+          <div class="col-sm-12">
+            <button class="btn btn-warning" ng-show="toyRobotModel.mode=='patch'" ng-click="patchCommandsExecute()">Execute</button>
+            <button class="btn btn-danger" ng-click="reset()">Reset</button>
           </div>
         </div>
     </div>
   </div>
   <div class="row">
     <hr>
-    <div class="col-sm-4 col-sm-offset-2 well">
+    <div class="col-sm-4 col-sm-offset-2">
       <h4 class="text-info">Input</h4>
-      <textarea ng-model="toyRobotModel.input" class="form-control inputTextarea">
+      <textarea ng-model="toyRobotModel.input" class="form-control inputTextarea" readonly>
 
       </textarea>
     </div>
-    <div class="col-sm-4 col-sm-offset-1 well">
+    <div class="col-sm-4 col-sm-offset-1">
       <h4 class="text-info">Output</h4>
-      <textarea ng-model="toyRobotModel.output" class="form-control outputTextarea">
+      <textarea ng-model="toyRobotModel.output" class="form-control outputTextarea" readonly>
 
       </textarea>
     </div>

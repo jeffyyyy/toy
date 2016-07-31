@@ -37,7 +37,8 @@ module.exports.routes = {
   // }
   //'get /': {view: 'index'},
   'get /': {view:'toyrobot/index'},
-  'post /api/handleNextMove': 'ToyRobotController.handleNextMove'
+  'post /api/handleNextMove': 'ToyRobotController.handleNextMove',
+  'post /api/handlePatchCommands': 'ToyRobotController.handlePatchCommands'
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *
