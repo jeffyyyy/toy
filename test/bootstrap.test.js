@@ -1,6 +1,5 @@
 var sails = require('sails');
 before(function(done) {
-    this.timeout(5000);
     sails.lift({
 
     },
