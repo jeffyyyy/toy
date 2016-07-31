@@ -321,4 +321,31 @@ describe("Toy Robot Simulator - Test Patch Commands Mode", function() {
       .send({patchCommands: command})
       .expect({x: 3, y: 3, f: 'N'}, done);
   });
+
+  it("Test very complex commands \"PLACE,3,4,N MOVE MOVE LEFT LEFT LEFT RIGHT RIGHT MOVE MOVE LEFT LEFT RIGHT MOVE MOVE RIGHT RIGHT LEFT MOVE MOVE\", expect final position (x,y,f) to be (0,2,W)", function (done) {
+    var command = "place,3,4,N\n"
+      + "move\n"
+      + "move\n"
+      + "left\n"
+      + "left\n"
+      + "left\n"
+      + "right\n"
+      + "right\n"
+      + "move\n"
+      + "move\n"
+      + "left\n"
+      + "left\n"
+      + "right\n"
+      + "move\n"
+      + "move\n"
+      + "right\n"
+      + "right\n"
+      + "left\n"
+      + "move\n"
+      + "move\n";
+    request(sails.hooks.http.app)
+      .post('/api/handlePatchCommands')
+      .send({patchCommands: command})
+      .expect({x: 0, y: 2, f: 'W'}, done);
+  });
 });
