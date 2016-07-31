@@ -102,7 +102,6 @@ function ($scope, ToyRobotService) {
       $scope.toyRobotModel.input = $scope.toyRobotModel.patchCommands.toUpperCase();
       $scope.toyRobotModel.output = '';
       $scope.toyRobotModel.robotClass = '';
-      console.log($scope.toyRobotModel.patchCommands);
     }
   }
 
