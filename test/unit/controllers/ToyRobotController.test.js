@@ -235,16 +235,36 @@ describe("Toy Robot Simulator - Test Step By Step Mode", function() {
 
 describe("Toy Robot Simulator - Test Patch Commands Mode", function() {
   it("Test PLACE command at position (1,1,N)", function (done) {
+    var command = 'place,1,1,N';
     request(sails.hooks.http.app)
       .post('/api/handlePatchCommands')
-      .send({patchCommands: 'place,1,1,N'})
+      .send({patchCommands: command})
       .expect({x: 1, y: 1, f: 'N'}, done);
   });
 
   it("Test invalid PLACE command at position (5,1,N), expect final position (x,y,f) to be empty ('','','')", function (done) {
+    var command = 'place,5,1,N';
     request(sails.hooks.http.app)
       .post('/api/handlePatchCommands')
-      .send({patchCommands: 'place,5,1,N'})
+      .send({patchCommands: command})
+      .expect({x: '', y: '', f: ''}, done);
+  });
+
+  it("Test invalid PLACE command at position (2,-1,N), expect final position (x,y,f) to be empty ('','','')", function (done) {
+    var command = 'place,2,-1,N';
+    request(sails.hooks.http.app)
+      .post('/api/handlePatchCommands')
+      .send({patchCommands: command})
+      .expect({x: '', y: '', f: ''}, done);
+  });
+
+  it("Test MOVE,LEFT,RIGHT commands without PLACE command, expect final position (x,y,f) to be empty('','','')", function (done) {
+    var command = "move\n"
+                  + "left\n"
+                  + "right\n";
+    request(sails.hooks.http.app)
+      .post('/api/handlePatchCommands')
+      .send({patchCommands: command})
       .expect({x: '', y: '', f: ''}, done);
   });
 
