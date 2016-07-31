@@ -96,10 +96,12 @@ function ($scope, ToyRobotService) {
     } else {
       $scope.toyRobotModel.patchCommands += ($scope.toyRobotModel.patchCommands != '' ? "\n" : "")
                                               + commandInput.type
-                                              + (commandInput.x != undefined ? "," + commandInput.x: "")
-                                              + (commandInput.y != undefined ? "," + commandInput.y: "")
+                                              + (commandInput.x != undefined && commandInput.x != '' ? "," + commandInput.x: "")
+                                              + (commandInput.y != undefined && commandInput.y != '' ? "," + commandInput.y: "")
                                               + (commandInput.f ? "," + commandInput.f: "");
       $scope.toyRobotModel.input = $scope.toyRobotModel.patchCommands.toUpperCase();
+      $scope.toyRobotModel.output = '';
+      $scope.toyRobotModel.robotClass = '';
       console.log($scope.toyRobotModel.patchCommands);
     }
   }
@@ -115,6 +117,7 @@ function ($scope, ToyRobotService) {
         $scope.toyRobotModel.currentPosition = response;
         $scope.toyRobotModel.output = $scope.reportOutput(response);
         if (response.f) $scope.changeDirection(response.f);
+        $scope.toyRobotModel.patchCommands = '';
       }
     });
   }
