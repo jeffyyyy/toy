@@ -4,12 +4,16 @@ var ToyRobotService = {
   handleNextMove: function(inputData, onResult, onError) {
     var currentPosition = inputData.currentPosition;
     var commandInput = inputData.commandInput;
-    var boundary = inputData.boundary;
-
+    var boundary = {
+      minX: 0,
+      maxX: 4,
+      minY: 0,
+      maxY: 4
+    };
     var response = ToyRobotService.calculateNewPosition(currentPosition, commandInput, boundary);
 
     if (response) {
-      return onResult(response);  
+      return onResult(response);
     } else {
       return onError({error: "Out of boundary"});
     }
@@ -68,7 +72,7 @@ var ToyRobotService = {
 
   validateNewPosition: function(input, boundary) {
     var validPosition;
-    if (input.x < boundary.minX || input.x > boundary.maxX 
+    if (input.x < boundary.minX || input.x > boundary.maxX
       || input.y < boundary.minY || input.y > boundary.maxY) {
       validPosition = false;
     } else {

@@ -16,5 +16,5 @@
 
 
 ## Screenshots
-![alt text](https://github.com/jeffyyyy/toy/raw/develop/assets/images/toyrobot_screenshot.png "Toy Robot Control Panel")
+![alt text](https://github.com/jeffyyyy/toy/raw/develop/assets/images/patchcommandmode.png "Toy Robot Patch Commands Mode")
 ![alt text](https://github.com/jeffyyyy/toy/raw/develop/assets/images/unittest_screenshot.png "Toy Robot Unit Tests")
