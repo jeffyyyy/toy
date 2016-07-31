@@ -48,9 +48,8 @@ module.exports = {
           f: commandDetail[3] != undefined ? commandDetail[3] : ''
         }
       };
-
       ToyRobotService.handleNextMove(inputData, function (result) {
-        if (result.x != '' && result.y != '' && result.f != '') {
+        if (result.x != undefined && result.y != undefined && result.f != undefined) {
           currentPosition = result;
         }
         return callback();
