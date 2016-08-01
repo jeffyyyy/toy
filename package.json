@@ -17,6 +17,7 @@
     "grunt-contrib-less": "1.1.0",
     "grunt-contrib-uglify": "0.7.0",
     "grunt-contrib-watch": "0.5.3",
+    "grunt-make": "^1.0.0",
     "grunt-sails-linker": "~0.10.1",
     "grunt-sync": "0.2.4",
     "include-all": "~0.1.6",
@@ -35,5 +36,6 @@
     "url": "git://github.com/jeffyyyy/toy.git"
   },
   "author": "Jeff Yu",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {}
 }
