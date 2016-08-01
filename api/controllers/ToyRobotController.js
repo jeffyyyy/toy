@@ -1,5 +1,5 @@
 /**
- * RobotController
+ * ToyRobotController
  *
  * @description :: Server-side logic for managing robots
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
