@@ -1,10 +1,6 @@
 ToyRobot.service('ToyRobotService', ['$http', '$q', function($http, $q) {
   var toyrobotService = {};
 
-  // First format gets rid of any attached timezone
-/*  toyrobotService.getTimeZonedDate = function(date) {
-    return moment.tz(moment(date).format('YYYY-MM-DDTHH:mm:ss'), SessionService.getSession().school.timezone).format();
-  };*/
   toyrobotService.getInitialState = function() {
     var defer = $q.defer();
     $http.get('/api/getInitialState').success(function(response) {
