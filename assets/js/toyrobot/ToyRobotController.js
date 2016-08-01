@@ -115,8 +115,12 @@ function ($scope, ToyRobotService) {
       } else {
         $scope.toyRobotModel.currentPosition = response;
         $scope.toyRobotModel.output = $scope.reportOutput(response);
-        if (response.f) $scope.changeDirection(response.f);
         $scope.toyRobotModel.patchCommands = '';
+        if (response.f) $scope.changeDirection(response.f);
+        if (!data.patchCommands) {
+          $scope.toyRobotModel.input = '';
+          $scope.toyRobotModel.robotClass = '';
+        }
       }
     });
   }
