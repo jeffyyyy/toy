@@ -2,10 +2,9 @@
 
 ## Install Guide
 1. Go to the project folder, run command "npm install".
-2. Then run command "bower install" (if you don't have bower installed, please run command "npm install -g bower" first).
-3. Then run command "npm install -g mocha" (compulsory module for unit tests).
-4. Run unit tests with command "mocha". Please be aware that if you already have the web server running, you need to shut it down first since unit tests will need to start the web server at same port 1337.
-5. Finally run command "sails lift" to start the web server, now you can view the robot simulator at http://localhost:1337.
+2. Then run command "grunt install" (It will install all necessary packages globally).
+3. Run unit tests with command "mocha". Please be aware that if you already have the web server running, you need to shut it down first since unit tests will need to start the web server at same port 1337.
+4. Finally run command "sails lift" to start the web server, now you can view the robot simulator at http://localhost:1337.
 
 ## Important files
 * Inside folder "api/controllers" and "api/services", which contains all the server side node.js code
