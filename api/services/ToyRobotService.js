@@ -52,21 +52,17 @@ var ToyRobotService = {
         newPosition = ToyRobotService.validateNewPosition(next, boundary);
         break;
       case "left":
-        var currentIndex = _.indexOf(directions, currentPosition.f);
-        if (currentIndex < 0) {
-          newPosition = currentPosition;
-        } else {
-          var newIndex = (currentIndex - 1 >= 0) ? currentIndex - 1 : directions.length - 1;
-          var newDirection = directions[newIndex];
-          newPosition = {x: currentPosition.x, y: currentPosition.y, f: newDirection};
-        }
-        break;
       case "right":
         var currentIndex = _.indexOf(directions, currentPosition.f);
         if (currentIndex < 0) {
           newPosition = currentPosition;
         } else {
-          var newIndex = (currentIndex + 1 <= directions.length-1) ? currentIndex + 1 : 0;
+          var newIndex;
+          if (input.type == 'left') {
+            newIndex = (currentIndex - 1 >= 0) ? currentIndex - 1 : directions.length - 1;
+          } else if (input.type == 'right'){
+            newIndex = (currentIndex + 1 <= directions.length-1) ? currentIndex + 1 : 0;
+          }
           var newDirection = directions[newIndex];
           newPosition = {x: currentPosition.x, y: currentPosition.y, f: newDirection};
         }

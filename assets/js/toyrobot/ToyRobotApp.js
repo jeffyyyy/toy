@@ -8,13 +8,6 @@ ToyRobot.config(['$routeProvider', function($routeProvider) {
       templateUrl: '/templates/toyrobot/index',
       controller: 'ToyRobotController'
     }).
-    /*when('/apply', {
-      templateUrl: '/templates/student/leave-types/index',
-      controller: 'LeaveTypeListController',
-      resolve: {
-        session: setSession
-      }
-    })*/
     otherwise({
       redirectTo: '/'
     });
