@@ -15,30 +15,26 @@ var ValidationService = {
     var commandInput = inputData.commandInput;
 
     if (currentPosition) {
-      if (commandInput) {
-        if (commandInput.type) {
-          switch(commandInput.type) {
-              case "place":
-                if (ValidationService.checkInvalidPosition(commandInput)) {
-                  error = {error: "Command input not valid, either x or y or direction undefined"};
-                }
-                break;
-              case "move":
-              case "left":
-              case "right":
-                if (ValidationService.checkInvalidPosition(currentPosition)) {
-                  error = {error: "Current position not valid, please start with valid PLACE command"};
-                }
-                break;
-              default:
-                error = {error: "Command type not valid"};
-                break;
-          }
-        } else {
-          error = {error: "No command type"};
+      if (commandInput && commandInput.type) {
+        switch(commandInput.type) {
+          case "place":
+            if (ValidationService.checkInvalidPosition(commandInput)) {
+              error = {error: "Command input not valid, either x or y or direction undefined"};
+            }
+            break;
+          case "move":
+          case "left":
+          case "right":
+            if (ValidationService.checkInvalidPosition(currentPosition)) {
+              error = {error: "Current position not valid, please start with valid PLACE command"};
+            }
+            break;
+          default:
+            error = {error: "Command type not valid"};
+            break;
         }
       } else {
-        error = {error: "No command input"};
+        error = {error: "No command type"};
       }
     } else {
       if (commandInput && commandInput.type == 'place') {
