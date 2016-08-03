@@ -1,25 +1,6 @@
-ToyRobot.controller('ToyRobotController', ['$scope', 'ToyRobotService',
-function ($scope, ToyRobotService) {
-  $scope.toyRobotModel = {
-    currentPosition: {},
-    row: 5,
-    column : 5,
-    nextMove: {
-      type: '',
-      f: '',
-      x: '',
-      y: ''
-    },
-    mode: 'step', //default mode is step by step
-    stepModeClass: 'active btn-primary',
-    patchModeClass: 'btn-default',
-    modeDescription: 'Step By Step Mode - Each command will get executed and return output immediately!',
-    patchCommands: '',
-    robotClass: '',
-    input: '',
-    output: '',
-    error: ''
-  };
+ToyRobot.controller('ToyRobotController', ['$scope', 'ToyRobotService', 'ToyRobotModel',
+function ($scope, ToyRobotService, ToyRobotModel) {
+  $scope.toyRobotModel = new ToyRobotModel.initialize();
 
   $scope.changeDirection = function(facing) {
     switch(facing) {
